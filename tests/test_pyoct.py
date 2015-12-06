@@ -24,6 +24,8 @@ class TestPyoct(unittest.TestCase):
     def test_000_something(self):
         pass
 
+    def test_hardware_init(self):
+        
 
 if __name__ == '__main__':
     import sys

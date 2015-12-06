@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/pyoct.iml" filepath="$PROJECT_DIR$/.idea/pyoct.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/pyoct.iml" filepath="$PROJECT_DIR$/.idea/pyoct.iml" />
     </modules>
   </component>
 </project>
