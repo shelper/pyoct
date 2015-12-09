@@ -12,7 +12,5 @@ scanner:
 acquisition:
     from_file, from_camera, from_daq
     trigger, pulse, bit_depth, quant_eff,
-modulator:
-    mod_phase, mod_pol, mod_
 
 """

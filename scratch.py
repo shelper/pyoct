@@ -3,7 +3,7 @@
 """
 this file is a scratch file to test snippets, should not be included when release the package.
 
-solely for developement and quick test.
+solely for development and quick test.
 
 """
 import numpy as np
