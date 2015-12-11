@@ -60,3 +60,6 @@ target/
 
 # pycharm project files
 .idea/
+
+# misc iterms that should not be included in GIT should be saved in foo folder
+foo/
