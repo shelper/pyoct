@@ -9,7 +9,7 @@ into images
 
 """
 
-def adjust_dispersion():
+def adjust_phase():
     pass
 
 def resample():
@@ -18,7 +18,7 @@ def resample():
 def recon_img():
     pass
 
-def recon_doppler_img():
+def recon_doppler():
     pass
 
 def filter():

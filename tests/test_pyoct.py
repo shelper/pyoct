@@ -19,6 +19,7 @@ class TestPyoct(unittest.TestCase):
 
     def setUp(self):
         # load the test.cfg file
+
         pass
 
     def tearDown(self):

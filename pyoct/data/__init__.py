@@ -20,3 +20,6 @@ line:
 
 
 """
+
+
+__all__ = ['spectrum', 'image']
