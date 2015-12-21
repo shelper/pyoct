@@ -21,4 +21,11 @@ project:
 segmentation:
 
 
+
 """
+
+
+class Image(object):
+    def __init__(self, dimension, dtype):
+
+

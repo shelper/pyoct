@@ -6,7 +6,7 @@ a pipe is similar to a plugin and should be saved in this folder
 assume you have input data as `data`, and you want to run the data through a pipeline
 that is composed of pipe A, B, and C. you can run:
 ```python
-pipeline(A, data) pipes
+pipeline(A, data)
 pipeline.add_pipe(B)
 pipeline.add_pipe(C, is_end=True)
 pipeline.run()
