@@ -1,3 +1,7 @@
 # -*- coding: utf-8 -*-
 
-def
+def remove_dc(input, method='mean')
+
+
+
+    return output

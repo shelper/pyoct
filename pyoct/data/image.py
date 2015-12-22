@@ -23,9 +23,10 @@ segmentation:
 
 
 """
+from .basedata import BaseData
 
-
-class Image(object):
+class Image(BaseData):
     def __init__(self, dimension, dtype):
+        pass
 
 

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from functools import reduce
+import numpy as np
+import operator
 
 class BaseData(object):
 
@@ -14,7 +17,7 @@ class BaseData(object):
         self.dimension = dimension
         self.data = np.array([], dtype=dtype)
         self.dtype = self.data.dtype
-        self.dsize = reduce(mul, dimension, 1)
+        self.dsize = reduce(operator.mul, dimension, 1)
 
     def load_from_file(self, file, ftype='bin', hdr_size=0):
         if ftype == 'bin':

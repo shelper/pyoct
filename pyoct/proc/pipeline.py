@@ -1,9 +1,27 @@
 # -*- coding: utf-8 -*-
 
-from functools import wraps
+import asyncio
 import os
+import functools
 
 from ..data.basedata import BaseData
+
+# def pipehead(func):
+#     @functools.wraps(func)
+#     def wrapper(*args, **kwargs):
+#         yield func(*args, **kwargs)
+#     return wrapper
+
+
+def piperize(prev_func):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            input =  yield from prev_func
+            return func(input)
+        return wrapper
+    return decorator
+
 
 class PipeLine(object):
     """
@@ -15,17 +33,21 @@ class PipeLine(object):
     p.output2file(output_file)
     p.start()
 
-
-
     """
 
-    def __init__(self, funcs, set_async=True):
-        if set_async:
-            for func in funcs:
+    def __init__(self, funcs=[], data_in=None):
+        self.data_in = data_in
+        # self.funcs = funcs
+        self.pipe_num = len(funcs)
+        self.pipes = []
+        if len(funcs) >= 2:
+            for i, func in reversed(funcs)[:-1]:
+                prev_func = funcs[self.pipe_num - (i + 2)]
+                self.pipes.append(piperize(prev_func)(func))
+            self.pipes.append(asyncio.coroutine(func))
+        self.
 
-        self.pipes = funcs
-
-    def insert_pipe(self, pipe, position):
+    def insert_pipe(self, func, position):
         pass
 
     def pop_pipe(self, position):
@@ -36,17 +58,11 @@ class PipeLine(object):
 
     def setup_input(self, input, dimension, dtype):
         if os.path.isfile(input):
-            self.input =
-
+            self.input = BaseData([1024, 512]).load_from_file('~/develop/pyoct/foo/foodata.raw')
         pass
 
     def start(self):
         # confirm the previous pipe output matches following pipe input format
         pass
 
-class Pipe(object):
-
-    def __init__(self, func):
-        self.func =
-        pass
 

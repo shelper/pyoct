@@ -21,3 +21,5 @@ example1: build a processing pipes to read in raw interferogram data and reconst
 
 from .data import *
 
+from .proc import *
+

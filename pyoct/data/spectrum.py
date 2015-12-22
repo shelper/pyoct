@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 
 """
+pyoct.spectrum
+~~~~~~~~~~~~~~
 
+this module defines the spectrum or interferogram in OCT
+it should be the subclass of BaseData
 """
-from operator import mul
-from functools import reduce
-import os
-import numpy as np
 
-from ..proc.collections import resample
+from.basedata import BaseData
 
-class Spectrum(object):
+class Spectrum(BaseData):
+    def __init__(self):
+        pass
 
-    def linearize(self, ref, base='wavenumber', method):
+    def linearize(self, ref, base='wavenumber', method='cubic'):
+        pass
 
 
 
