@@ -1,38 +1,34 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-test_pyoct
-----------------------------------
-
-Tests for `pyoct` module.
-
-
-"""
-
-import unittest
+# import pytest
 
 from .. import pyoct
 
 
-class TestPyoct(unittest.TestCase):
-
-    def setUp(self):
-        # load the test.cfg file
-
-        pass
-
-    def tearDown(self):
-        pass
-
-    def test_000_something(self):
-        pass
-
-    def test_hardware_init(self):
-        pass
+def test_read_rawdata():
+    rawdata = pyoct.data.basedata.BaseData([1024, 512], 'int16')
+    rawdata.load_from_file('/Users/zyuan/develop/pyoct/foo/foodata.raw')
 
 
-if __name__ == '__main__':
-    import sys
+def test_PipeLine():
 
-    sys.exit(unittest.main())
+    import functools
+
+    def add(x, y):
+        return x + y
+
+    def prod(x, y):
+        return x * y
+
+    def power(x, y):
+        return x**y
+
+    funcs = [functools.partial(add, y=1),
+             functools.partial(prod, y=2),
+             functools.partial(power, y=3)]
+
+    pline = pyoct.proc.pipeline.PipeLine(funcs)
+    pline.feed_data(3)
+    pline.run()
+    assert pline.data_out == 512
+

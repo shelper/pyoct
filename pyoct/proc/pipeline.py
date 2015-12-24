@@ -2,25 +2,8 @@
 
 import asyncio
 import os
-import functools
 
 from ..data.basedata import BaseData
-
-# def pipehead(func):
-#     @functools.wraps(func)
-#     def wrapper(*args, **kwargs):
-#         yield func(*args, **kwargs)
-#     return wrapper
-
-
-def piperize(prev_func):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            input =  yield from prev_func
-            return func(input)
-        return wrapper
-    return decorator
 
 
 class PipeLine(object):
@@ -29,40 +12,49 @@ class PipeLine(object):
 
     example of usage:
     p = PipeLine(functions)
-    p.setup_input(input_data)
-    p.output2file(output_file)
-    p.start()
+    p.feed_data(data)
+    p.run()
 
     """
 
-    def __init__(self, funcs=[], data_in=None):
-        self.data_in = data_in
-        # self.funcs = funcs
-        self.pipe_num = len(funcs)
-        self.pipes = []
-        if len(funcs) >= 2:
-            for i, func in reversed(funcs)[:-1]:
-                prev_func = funcs[self.pipe_num - (i + 2)]
-                self.pipes.append(piperize(prev_func)(func))
-            self.pipes.append(asyncio.coroutine(func))
-        self.
+    def __init__(self, funcs=[], data=None):
+        self.data_in = data
+        self.data_out = None
+        self.pipes = [asyncio.coroutine(func) for func in funcs]
+        self.pipeline = self.build()
+        self.loop = asyncio.get_event_loop()
+        # self.pipe_num = len(funcs)
 
-    def insert_pipe(self, func, position):
-        pass
+    def build(self):
+        def wrapper(*args, **kwargs):
+            data_out = yield from self.pipes[0](*args, **kwargs)
+            for pipe in self.pipes[1:]:
+                data_out = yield from pipe(data_out)
+            return data_out
+        return wrapper
 
-    def pop_pipe(self, position):
-        pass
+    def insert_pipe(self, position, func):
+        self.pipes.insert(position, asyncio.coroutine(func))
+        self.pipeline = self.build()
 
-    def get_pipe_list(self):
-        pass
+    def pop_by_name(self, func_name):
+        if callable(func_name):
+            position = self.pipes.index(func_name)
 
-    def setup_input(self, input, dimension, dtype):
-        if os.path.isfile(input):
-            self.input = BaseData([1024, 512]).load_from_file('~/develop/pyoct/foo/foodata.raw')
-        pass
+        self.pipes.pop(position)
+        self.pipeline = self.build()
 
-    def start(self):
-        # confirm the previous pipe output matches following pipe input format
-        pass
+    def pop_by_idx(self, position):
+        self.pipes.pop(position)
+        self.pipeline = self.build()
+
+    def feed_data(self, data, dimension=None, dtype=None):
+        if os.path.isfile(data):
+            self.data_in = BaseData(dimension, dtype).load_from_file(data)
+        else:
+            self.data_in = data
+
+    def run(self):
+        self.data_out = self.loop.run_until_complete(self.pipeline(self.data_in))
 
 

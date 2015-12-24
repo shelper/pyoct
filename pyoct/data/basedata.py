@@ -3,6 +3,7 @@
 from functools import reduce
 import numpy as np
 import operator
+import os
 
 class BaseData(object):
 
@@ -15,8 +16,8 @@ class BaseData(object):
         :return: None
         """
         self.dimension = dimension
+        self.dtype = dtype
         self.data = np.array([], dtype=dtype)
-        self.dtype = self.data.dtype
         self.dsize = reduce(operator.mul, dimension, 1)
 
     def load_from_file(self, file, ftype='bin', hdr_size=0):
