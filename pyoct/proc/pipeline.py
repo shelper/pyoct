@@ -52,6 +52,7 @@ class PipeLine(object):
         if os.path.isfile(data):
             self.data_in = BaseData(dimension, dtype).load_from_file(data)
         else:
+            # TODO add other data handling for :numpy array, and string block
             self.data_in = data
 
     def run(self):

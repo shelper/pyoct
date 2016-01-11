@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-def remove_dc(input, method='mean')
+def remove_dc(data, axis=0, method='mean'):
 
 
 

@@ -10,26 +10,29 @@ run the same process for 1D, 2D, or 3D datasets
 
 """
 
+import functools
+
 def complex(): #wrapper to return complex data
     pass
 
-def real(): #wrapper to return complex data
+def real(): #wrapper to return real data
     pass
 
-def imag(): #wrapper to return complex data
+def imag(): #wrapper to return imaginary data
     pass
 
-def amplitude(): #wrapper to return complex data
+def amplitude(): #wrapper to return amplitude/intensity data
     pass
 
-def phase(): #wrapper to return complex data
+def phase(): #wrapper to return phase data
     pass
 
-def dim1():
+# TODO before perform this, the input array needs to be transposed so that func runs on axis=-1
+def proc_2d(func):
+    @functools.wraps(func)
+    def wrapper(data, *args, **kwargs):
+        for i in data[]
     pass
 
-def dim2():
-    pass
-
-def dim3():
+def proc_3d():
     pass
