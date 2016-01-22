@@ -6,7 +6,7 @@ import os
 from ..data.basedata import BaseData
 
 
-class PipeLine(object):
+class Pipeline(object):
     """
     pipeline to connect pipes for streamline data processing.
 
@@ -20,32 +20,31 @@ class PipeLine(object):
     def __init__(self, funcs=[], data=None):
         self.data_in = data
         self.data_out = None
-        self.pipes = [asyncio.coroutine(func) for func in funcs]
+        self.func_list = [asyncio.coroutine(func) for func in funcs]
         self.pipeline = self.build()
         self.loop = asyncio.get_event_loop()
-        # self.pipe_num = len(funcs)
 
     def build(self):
         def wrapper(*args, **kwargs):
-            data_out = yield from self.pipes[0](*args, **kwargs)
-            for pipe in self.pipes[1:]:
+            data_out = yield from self.func_list[0](*args, **kwargs)
+            for pipe in self.func_list[1:]:
                 data_out = yield from pipe(data_out)
             return data_out
         return wrapper
 
     def insert_pipe(self, position, func):
-        self.pipes.insert(position, asyncio.coroutine(func))
+        self.func_list.insert(position, asyncio.coroutine(func))
         self.pipeline = self.build()
 
     def pop_by_name(self, func_name):
         if callable(func_name):
-            position = self.pipes.index(func_name)
+            position = self.func_list.index(func_name)
 
-        self.pipes.pop(position)
+        self.func_list.pop(position)
         self.pipeline = self.build()
 
     def pop_by_idx(self, position):
-        self.pipes.pop(position)
+        self.func_list.pop(position)
         self.pipeline = self.build()
 
     def feed_data(self, data, dimension=None, dtype=None):
@@ -56,6 +55,6 @@ class PipeLine(object):
             self.data_in = data
 
     def run(self):
-        self.data_out = self.loop.run_until_complete(self.pipeline(self.data_in))
+        self.data_out = asyncio.get_event_loop().run_until_complete(self.pipeline(self.data_in))
 
 

@@ -11,28 +11,43 @@ run the same process for 1D, 2D, or 3D datasets
 """
 
 import functools
+import numpy as np
 
-def complex(): #wrapper to return complex data
-    pass
+def partial_return(part):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            size = result.shape[0]
+            if part == 'cplx':
+                return result
+            elif part == 'real':
+                return result.real
+            elif part == 'imag':
+                return result.imag
+            elif part == 'l_half':
+                return result[:size/2+1, :]
+            elif part == 'r_half':
+                return result[size/2:, :]
+            elif part == 'amplitude':
+                return abs(result)
+            elif part == 'phase':
+                return np.angle(result)
+        return wrapper
+    return decorator
 
-def real(): #wrapper to return real data
-    pass
+def proc_ndim(axis):
+    def decorator(func):
+        @functools.wraps(func):
+        def wrapper(data, *args, **kwargs):
+            result = np.zeros_like(data)
+            for result_1d, data_1d in data:
+                result_1d = func(data_id, *args, **kwargs)
 
-def imag(): #wrapper to return imaginary data
-    pass
 
-def amplitude(): #wrapper to return amplitude/intensity data
-    pass
 
-def phase(): #wrapper to return phase data
-    pass
 
-# TODO before perform this, the input array needs to be transposed so that func runs on axis=-1
-def proc_2d(func):
-    @functools.wraps(func)
-    def wrapper(data, *args, **kwargs):
-        for i in data[]
-    pass
 
-def proc_3d():
-    pass
+        return wrapper
+    return decorator
+

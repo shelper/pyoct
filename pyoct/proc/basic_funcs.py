@@ -10,32 +10,44 @@ into images
 """
 
 import numpy as np
+from scipy.interpolate import interp1d
+from . import decor
 
 def adjust_phase():
     pass
 
-def resample(data, x, xq, axis=0):
+def resample(x, y, xq, method='cubic'):
     """
+    resample y at xq, if y is higher than 1 dimension, the resampling is done in last dimension
 
-    :param data:
+    :param y: the data/spectrum as numpy array to be resampled
     :param x: the x coordinates of data in axis
     :param xq: the queried points' x coordinates, in range of [0, 1]
-    :param axis: which axis to interplolate
-    :return:
+    :return: resampled y at xq
     """
+    if y.ndim == 1:
+        interp = interp1d
+    elif y.ndim == 2:
+        interp = decor.proc_2d(interp1d)
+    elif y.ndim == 3:
+        interp = decor.proc_3d(interp1d)
 
+    interp = interp1d(x, y, kind=method, bounds_error=False, fill_value=0)
+    y_resampled = interp(xq)
 
-    linear_x = np.linspace(0,1,data.shape[-1]).astype(np.float32)
-    calib_data = np.polyval(calib_coeff, linear_x)
-    calib_data[calib_data<0] = 0
-    calib_data[calib_data>1] = 1
+    linear_x = np.linspace(0, 1, data.shape[-1]).astype(np.float32)
+    cali_x = np.polyval(calib_coeff, linear_x)
+    cali_x[cali_x<0] = 0
+    cali_x[cali_x>1] = 1
     #interp for 1D or 2D data.
     data = data.reshape(-1,data.shape[-1])
     calied_data = np.zeros_like(data)
-    calied_data = interp1d(linear_x, data, kind=interp_method)(calib_data)
+    calied_data = np.interp1d(linear_x, data, kind=method)(cali_x)
     return calied_data
 
 def recon_img():
+    img = np.fft
+
     pass
 
 def recon_doppler():
