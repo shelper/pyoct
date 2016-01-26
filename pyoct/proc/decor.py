@@ -13,6 +13,7 @@ run the same process for 1D, 2D, or 3D datasets
 import functools
 import numpy as np
 
+
 def partial_return(part):
     def decorator(func):
         @functools.wraps(func)
@@ -36,18 +37,13 @@ def partial_return(part):
         return wrapper
     return decorator
 
-def proc_ndim(axis):
+
+def proc_along_axis(axis=-1):
     def decorator(func):
-        @functools.wraps(func):
+        @functools.wraps(func)
         def wrapper(data, *args, **kwargs):
-            result = np.zeros_like(data)
-            for result_1d, data_1d in data:
-                result_1d = func(data_id, *args, **kwargs)
-
-
-
-
-
+            result = np.apply_along_axis(func, axis=axis, *args, **kwargs)
+            return result
         return wrapper
     return decorator
 

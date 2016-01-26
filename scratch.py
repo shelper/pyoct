@@ -87,3 +87,20 @@ pipeline = connect(funcs)
 for i in range(20):
     data_in = i
     print(asyncio.get_event_loop().run_until_complete(pipeline(data_in)))
+
+import numpy as np
+
+# save some testing data for test
+data = np.zeros([512, 1024])
+for d in range(512):
+    depth = d / 1024
+    k = np.arange(1024)
+    data[d, :] = np.sin(k * depth * 2 * np.pi)
+
+data_uint16 = (data * 65535).astype(np.uint16)
+
+with open('slope.raw', 'wb') as fid:
+    data.tofile(fid)
+
+with open('slope_uint16.raw', 'wb') as fid:
+    data_uint16.tofile(fid)
