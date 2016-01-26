@@ -18,9 +18,9 @@ class BaseData(object):
         self.dimension = dimension
         self.dtype = dtype
         self.data = np.array([], dtype=dtype)
-        self.dsize = reduce(operator.mul, dimension, 1)
+        self.dsize = reduce(operator.mul, self.dimension, 1)
 
-    def load_from_file(self, file, ftype='bin', hdr_size=0):
+    def from_file(self, file, ftype='bin', hdr_size=0):
         if ftype == 'bin':
             with open(file, 'rb') as f:
                 f.seek(hdr_size, os.SEEK_SET)
@@ -28,4 +28,6 @@ class BaseData(object):
                 self.data.shape = self.dimension
         else:
             print('file type not supported:' + ftype)
+
+
 

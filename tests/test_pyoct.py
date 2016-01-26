@@ -5,9 +5,18 @@
 from .. import pyoct
 
 
-def test_read_rawdata():
-    rawdata = pyoct.data.basedata.BaseData([1024, 512], 'int16')
-    rawdata.load_from_file('/Users/zyuan/develop/pyoct/foo/foodata.raw')
+def test_basedata_read():
+    basedata = pyoct.data.basedata.BaseData([1024, 512], 'uint16')
+    basedata.from_file('/Users/zyuan/develop/pyoct/foo/slope_uint16.raw')
+
+
+def test_rawdata_calibration():
+    rawdata = pyoct.data.basedata.BaseData([1024, 512], 'uint16')
+    rawdata.from_file('/Users/zyuan/develop/pyoct/foo/slope_uint16.raw')
+    rawdata.
+
+def test_
+
 
 
 def test_PipeLine():
@@ -27,7 +36,7 @@ def test_PipeLine():
              functools.partial(prod, y=2),
              functools.partial(power, y=3)]
 
-    pline = pyoct.proc.pipeline.PipeLine(funcs)
+    pline = pyoct.proc.pipeline.Pipeline(funcs)
     pline.feed_data(3)
     pline.run()
     assert pline.data_out == 512
