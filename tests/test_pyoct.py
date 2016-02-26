@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# import pytest
+import pytest
 
 from .. import pyoct
 
