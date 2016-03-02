@@ -22,4 +22,4 @@ angiograph: (2D, 3D, etc.)
 
 # register/load all the functions in the pipes folder, so can be found and called to form pipeline
 # use watchdog to monitor the content change in the pipes folder
-__all__ = ['pipeline', 'decor', 'basic_funcs']
+__all__ = ['pipeline', 'decors', 'basic_funcs']

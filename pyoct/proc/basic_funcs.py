@@ -11,7 +11,7 @@ into images
 
 import numpy as np
 from scipy.interpolate import interp1d
-from . import decor
+from . import decors
 
 def adjust_phase():
     pass
@@ -28,9 +28,9 @@ def resample(x, y, xq, method='cubic'):
     if y.ndim == 1:
         interp = interp1d
     elif y.ndim == 2:
-        interp = decor.proc_along_axis(interp1d)
+        interp = decors.proc_along_axis(interp1d)
     elif y.ndim == 3:
-        interp = decor.proc_along_axis(interp1d)
+        interp = decors.proc_along_axis(interp1d)
 
     interp = interp1d(x, y, kind=method, bounds_error=False, fill_value=0)
     y_resampled = interp(xq)

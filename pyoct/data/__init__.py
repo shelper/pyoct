@@ -22,4 +22,4 @@ line:
 """
 
 
-__all__ = ['spectrum', 'image']
+__all__ = ['spectrum', 'image', 'basedata']
