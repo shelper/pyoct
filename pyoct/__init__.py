@@ -18,6 +18,7 @@ example1: build a processing pipes to read in raw interferogram data and reconst
 
 
 """
+__version__ = 1.0.0
 __all__ = ['data', 'proc', 'system', 'tools']
 
 from .data import *
