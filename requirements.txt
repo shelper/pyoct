@@ -9,3 +9,4 @@ cryptography>=1.0.1
 PyYAML>=3.11
 numpy>=1.9.1
 matplotlib>=1.4.3
+scipy
