@@ -2,7 +2,6 @@
 
 """
 pyoct
-~~~
 
 the package serves as a toolset for acquiring and processing OCT data
 processing and analyzing OCT images, and provides wrappers for OCT system control
