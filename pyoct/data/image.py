@@ -26,7 +26,7 @@ segmentation:
 from .basedata import BaseData
 
 class Image(BaseData):
-    def __init__(self, dimension, dtype):
+    def __init__(self, shape, dtype):
         pass
 
 

@@ -57,7 +57,7 @@ class Spectrum(BaseData):
             None
         """
 
-        self.profile = signal.gaussian(self.dimension[0], self.fwhm/2.235)
+        self.profile = signal.gaussian(self.shape[0], self.fwhm / 2.235)
         self.data *= self.shape
 
 

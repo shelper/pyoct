@@ -16,14 +16,9 @@ import pytest
 from .. import pyoct
 
 
-def test_data_generator():
-    pyoct.tools.data_generator.gen_spectrum()
-    pyoct.tools.data_generator.gen_basedata()
-
-def test_basedata_read():
-    basedata = pyoct.data.basedata.BaseData([1024, 512], 'uint16')
-    basedata.from_file('/Users/zyuan/develop/pyoct/foo/slope_uint16.raw')
-
+# def test_data_generator():
+#     pyoct.tools.data_generator.gen_spectrum()
+#     pyoct.tools.data_generator.gen_basedata()
 
 def test_rawdata_calibration():
     rawdata = pyoct.data.basedata.BaseData([1024, 512], 'uint16')
