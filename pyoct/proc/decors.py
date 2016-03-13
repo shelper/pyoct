@@ -12,28 +12,29 @@ run the same process for 1D, 2D, or 3D datasets
 
 import functools
 import numpy as np
+from .. import data
 
 
-def partial_return(part):
+def log_scale(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        result = 20 * np.log10(abs(result + 1E-6))
+        return result
+    return wrapper
+
+
+def partial_return(part='left'):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
             size = result.shape[0]
-            if part == 'cplx':
-                return result
-            elif part == 'real':
-                return result.real
-            elif part == 'imag':
-                return result.imag
-            elif part == 'l_half':
-                return result[:size/2+1, :]
-            elif part == 'r_half':
+            size = size - 1 if size % 2 else size
+            if part == 'left':
+                return result[:size/2 + 1, :]
+            elif part == 'right':
                 return result[size/2:, :]
-            elif part == 'amplitude':
-                return abs(result)
-            elif part == 'phase':
-                return np.angle(result)
         return wrapper
     return decorator
 

@@ -48,9 +48,12 @@ class BaseData(object):
         with open(file, 'rb') as f:
             try:
                 f.seek(hdr_size, os.SEEK_SET)
-                self.data = np.fromfile(f, dtype=self.dtype, count=np.prod(self.shape))
+                data_size = np.prod(self.shape)
+                self.data = np.fromfile(f, dtype=self.dtype, count=data_size)
+                if self.data.size != data_size:
+                    raise Exception()
                 self.data.shape = self.shape
             except:
-                print('cannot load data from file, check file existence and file size')
+                print('cannot load data correctly from file, check file existence and file size')
 
 

@@ -17,10 +17,10 @@ class Pipeline(object):
 
     """
 
-    def __init__(self, funcs=[], data=None):
+    def __init__(self, func_list=[], data=None):
         self.data_in = data
         self.data_out = None
-        self.func_list = [asyncio.coroutine(func) for func in funcs]
+        self.func_list = [asyncio.coroutine(func) for func in func_list]
         self.pipeline = self.build()
         self.loop = asyncio.get_event_loop()
 
@@ -47,7 +47,7 @@ class Pipeline(object):
         self.func_list.pop(position)
         self.pipeline = self.build()
 
-    def feed_data(self, data, dimension=None, dtype=None):
+    def feedin_data(self, data, dimension=None, dtype=None):
         if os.path.isfile(data):
             self.data_in = BaseData(dimension, dtype).load_from_file(data)
         else:
