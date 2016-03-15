@@ -17,12 +17,9 @@ class Pipeline(object):
 
     """
 
-    def __init__(self, func_list=[], data=None):
-        self.data_in = data
-        self.data_out = None
-        self.func_list = [asyncio.coroutine(func) for func in func_list]
-        self.pipeline = self.build()
-        self.loop = asyncio.get_event_loop()
+    def __init__(self, func_list=[]):
+        self.func_list = func_list
+        self.funcs = [func.__name__ for func in func_list]
 
     def build(self):
         def wrapper(*args, **kwargs):
@@ -38,13 +35,13 @@ class Pipeline(object):
 
     def pop_by_name(self, func_name):
         if callable(func_name):
-            position = self.func_list.index(func_name)
+            idx = self.funcs.index(func_name)
 
-        self.func_list.pop(position)
-        self.pipeline = self.build()
+        self.func_list.pop(idx)
+        self.pipeline = self.rebuild()
 
-    def pop_by_idx(self, position):
-        self.func_list.pop(position)
+    def pop_by_idx(self, idx):
+        self.func_list.pop(idx)
         self.pipeline = self.build()
 
     def feedin_data(self, data, dimension=None, dtype=None):
@@ -55,6 +52,7 @@ class Pipeline(object):
             self.data_in = data
 
     def run(self):
-        self.data_out = asyncio.get_event_loop().run_until_complete(self.pipeline(self.data_in))
+        self.event_loop = asyncio.get_event_loop()
+        self.data_out = self.event_loop.run_until_complete(self.pipeline(self.data_in))
 
 
