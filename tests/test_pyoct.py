@@ -45,6 +45,6 @@ def test_PipeLine():
 
     pline = pyoct.proc.pipeline.Pipeline(funcs)
     pline.feedin_data(3)
-    pline.run()
+    pline.process()
     assert pline.data_out == 512
 

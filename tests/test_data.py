@@ -22,4 +22,4 @@ def test_basedata():
 
 
 def test_spectrum():
-    spectrum =
+    pass
