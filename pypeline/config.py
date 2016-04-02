@@ -13,6 +13,4 @@ the pypeline package aims to provide an async frame work for data processing in 
 for instance, Optical coherence tomography (OCT) users can config the package to run for OCT by using the
 processing functions in the the folder impl/oct/*
 
-
-
 """

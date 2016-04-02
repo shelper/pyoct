@@ -2,8 +2,6 @@
 
 import asyncio
 import collections
-import functools
-from importlib import import_module
 
 from .funcwrap import connect, pipenize
 
@@ -21,7 +19,7 @@ class Pipeline(object):
         """
 
         Args:
-            func_list (list): a list of function to run through pipeline,
+            func_list (list): a list of function to run through pipeline
         """
         if isinstance(func_list, list) and func_list:
             self.func_list = [pipenize(f) for f in func_list]
@@ -35,7 +33,7 @@ class Pipeline(object):
         """
 
         Args:
-            position (int): the position to inser the function
+            position (int): the position to inser the function into the pipeline
             func (function/list of function): function to be inserted in to the pipeline
         """
         if isinstance(func, list):
@@ -51,7 +49,7 @@ class Pipeline(object):
         """
 
         Args:
-            func_name [str]: name of function to be popped out of the pipeline
+            func_name (str): name of function to be popped out of the pipeline
         """
         if callable(func_name):
             func_name = func_name.__name__
@@ -64,8 +62,8 @@ class Pipeline(object):
         """
 
         Args:
-            func_idx [int]: index of function to be popped out of the pipeline
-                this is useful when there are functions with same name
+            func_idx (int): index of function to be popped out of the pipeline
+                this is useful when there are functions with same name but idx will be different
         """
         self.func_list.pop(idx)
         self.func_names.pop(idx)
@@ -94,7 +92,7 @@ class Pipeline(object):
         process data or iterable data_source, then yield the results
 
         Args:
-            data_in : input data of the pipeline, this can be data or iterable data source
+            data_in: input data of the pipeline, this can be data or iterable data source
         """
         if isinstance(data_in, collections.Iterable):
             for d in data_in:

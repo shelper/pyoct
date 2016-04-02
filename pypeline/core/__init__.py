@@ -2,7 +2,7 @@
 
 """
 pypeline.core
-~~~~~~~~
+~~~~~~~~~~~~~
 
 this module contains all the processing method, and advanced algorithms for OCT signal processing
 
@@ -22,4 +22,4 @@ angiograph: (2D, 3D, etc.)
 
 # register/load all the functions in the settings folder, so can be found and called to form pipeline
 # use watchdog to monitor the content change in the settings folder
-__all__ = ['pipeline', 'decors', 'funcwrap', 'datawrap']
+__all__ = ['pipeline', 'funcwrap', 'argswrap']
