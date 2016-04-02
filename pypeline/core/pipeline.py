@@ -5,82 +5,12 @@ import collections
 import functools
 from importlib import import_module
 
-
-# import os
-# from ..data.basedata import BaseData
-
-
-def connect(func_list):
-    """
-    connects the functions in the list to form an async pipeline
-
-    Args:
-        func_list (list): list of functions in the folder ./pipes
-    """
-
-    def wrapper(*args, **kwargs):
-        for i, func in enumerate(func_list):
-            data_in = args[0] if i == 0 else data_out
-            data_out = yield from func(data_in, *args[1:], **kwargs)
-        return data_out
-
-    return wrapper
-
-
-def pipenize(func):
-    if callable(func):
-        return asyncio.coroutine(func)
-    elif isinstance(func, str):
-        return load_func(func)
-
-
-def load_func(func_name):
-    """
-    load function inis file from the ./pipes/inis folder
-
-    Args:
-        func_name (function): name of the function to be loaded from 'func_name.py' in folder ./pipes
-    """
-    base_func = import_module('.'.join(('pipes', func_name, func_name)))
-    func_cfg = load_func_cfg(func_name)
-    func = functools.partial(base_func, **func_cfg)
-    return asyncio.coroutine(func)
-
-
-def load_func_cfg(func_name):
-    try:
-        cfg_file = '.'.join((func_name, 'ini'))
-        cfg_file = '/'.join(('pipes', 'configuration', cfg_file))
-        with open(cfg_file, 'r') as f:
-            # TODO: load func_name.ini in ./pipes/inis
-            pass
-        func_cfg = {}
-    except FileExistsError:
-        func_cfg = {}
-
-    return func_cfg
-
-
-def check_data_in(func):
-    """
-    check if the input data matches the input requirements, the requirements are defined in
-        the configuration file loaded by load_cfg(func)
-
-    Args:
-        func (function): function that will process the input data
-    """
-
-    def wrapper(*args, **kwargs):
-        # TODO: check the input data matches the required format
-        data_out = func(*args, **kwargs)
-        return data_out
-
-    return wrapper
+from .funcwrap import connect, pipenize
 
 
 class Pipeline(object):
     """
-    pipeline to connect pipes for streamline data processing.
+    pipeline to connect settings for streamline data processing.
     example of usage:
         p = PipeLine([list of functions])
         p.process(data_in)

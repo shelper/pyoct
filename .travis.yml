@@ -27,5 +27,5 @@ deploy:
     secure: PLEASE_REPLACE_ME
   on:
     tags: true
-    repo: shelper/pyoct
+    repo: shelper/pypeline
     condition: $TOXENV == py27

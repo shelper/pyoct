@@ -20,6 +20,6 @@ angiograph: (2D, 3D, etc.)
 
 """
 
-# register/load all the functions in the pipes folder, so can be found and called to form pipeline
-# use watchdog to monitor the content change in the pipes folder
-__all__ = ['pipeline', 'decors', 'sig_proc', 'img_proc']
+# register/load all the functions in the settings folder, so can be found and called to form pipeline
+# use watchdog to monitor the content change in the settings folder
+__all__ = ['pipeline', 'decors', 'funcwrap', 'datawrap']

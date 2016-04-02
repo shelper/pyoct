@@ -12,10 +12,12 @@ into images
 # requires python-future, install by `pip install future`
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
+
 from builtins import *
 
 import numpy as np
-from . import sig_proc
+
+
 # from scipy import signal
 # from . import decors
 

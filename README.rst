@@ -1,22 +1,22 @@
 ===============================
-pyoct
+pypeline
 ===============================
 
-.. image:: https://img.shields.io/pypi/v/pyoct.svg
-        :target: https://pypi.python.org/pypi/pyoct
+.. image:: https://img.shields.io/pypi/v/pypeline.svg
+        :target: https://pypi.python.org/pypi/pypeline
 
-.. image:: https://img.shields.io/travis/shelper/pyoct.svg
-        :target: https://travis-ci.org/shelper/pyoct
+.. image:: https://img.shields.io/travis/shelper/pypeline.svg
+        :target: https://travis-ci.org/shelper/pypeline
 
-.. image:: https://readthedocs.org/projects/pyoct/badge/?version=latest
-        :target: https://readthedocs.org/projects/pyoct/?badge=latest
+.. image:: https://readthedocs.org/projects/pypeline/badge/?version=latest
+        :target: https://readthedocs.org/projects/pypeline/?badge=latest
         :alt: Documentation Status
 
 
 python based packages for Optical Coherence Tomography applications
 
 * Free software: ISC license
-* Documentation: https://pyoct.readthedocs.org.
+* Documentation: https://pypeline.readthedocs.org.
 
 Features
 --------

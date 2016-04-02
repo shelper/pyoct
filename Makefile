@@ -46,7 +46,7 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 pyoct tests
+	flake8 pypeline tests
 
 test:
 	python setup.py test
@@ -55,15 +55,15 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source pyoct setup.py test
+	coverage run --source pypeline setup.py test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs:
-	rm -f docs/pyoct.rst
+	rm -f docs/pypeline.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ pyoct
+	sphinx-apidoc -o docs/ pypeline
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

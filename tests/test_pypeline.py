@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+# below imports enables python 2 and 3 compatible codes
+# requires python-future, install by `pip install future`
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+from builtins import *
+
 # assert: base assert allowing you to write your own assertions
 # assertEqual(a, b): check a and b are equal
 # assertNotEqual(a, b): check a and b are not equal
@@ -13,21 +19,10 @@
 
 import pytest
 
-from .. import pypeline
+from ..pypeline.core import funcwrap, argswrap, pipeline
 
 
-# def test_data_generator():
-#     pypeline.tools.data_generator.gen_spectrum()
-#     pypeline.tools.data_generator.gen_basedata()
-
-def test_rawdata_calibration():
-    rawdata = pypeline.data.basedata.BaseData([1024, 512], 'uint16')
-    rawdata.from_file('/Users/zyuan/develop/pypeline/foo/slope_uint16.raw')
-
-
-
-def test_PipeLine():
-
+def test_pipeline():
     import functools
 
     def add(x, y):
@@ -37,14 +32,25 @@ def test_PipeLine():
         return x * y
 
     def power(x, y):
-        return x**y
+        return x ** y
 
     funcs = [functools.partial(add, y=1),
              functools.partial(prod, y=2),
              functools.partial(power, y=3)]
 
-    pline = pypeline.core.pipeline.Pipeline(funcs)
+    pline = pipeline.Pipeline(funcs)
     pline.feedin_data(3)
     pline.process()
     assert pline.data_out == 512
 
+
+def test_funcwrap():
+    pass
+
+
+def test_argswrap():
+    pass
+
+
+def test_pypeline():
+    pass

@@ -4,7 +4,7 @@
 pypeline.image
 ~~~~~~~~~
 
-this module contains tools to manipulate general images, 8bit, 16bit, 24bit, etc.
+this module contains misc to manipulate general images, 8bit, 16bit, 24bit, etc.
 
 set_dimension:
 set_voxsize:
