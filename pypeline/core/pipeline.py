@@ -9,7 +9,7 @@ from .funcwrap import connect, pipenize
 class Pipeline(object):
     """
     pipeline to connect settings for streamline data processing.
-    example of usage:
+    Example:
         p = PipeLine([list of functions])
         p.process(data_in)
         p.close() to close the pipeline
@@ -89,7 +89,7 @@ class Pipeline(object):
 
     def process(self, data_in):
         """
-        process data or iterable data_source, then yield the results
+        process data or iterable data_source, then yield the result
 
         Args:
             data_in: input data of the pipeline, this can be data or iterable data source
@@ -103,6 +103,6 @@ class Pipeline(object):
 
     def close(self):
         """
-        close pipeline, stop yielding results
+        close pipeline, stop yielding results, close the async threads
         """
         self.run_event.close()

@@ -45,10 +45,11 @@ def calibrate_sampling(v, cali_coeff, method='cubic'):
 def shift_phase(v, poly_coeff, slope=False):
     """
     shift_phase adds a pixel dependent phase shift to the 1D signal
-    it can be used to
-        1. add/remove physical dispersion mismatch between sample and reference
-        2. numerical refocusing
-        etc
+
+    Example:
+        it can be used to
+            1. add/remove physical dispersion mismatch between sample and reference
+            2. numerical refocusing, etc.
 
     Args:
         v: vector as 1D numpy array that phase shift applies to
