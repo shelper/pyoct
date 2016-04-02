@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-pyoct.data
+pypeline.data
 ~~~~~~~~
 
-This module contains pyoct data structures including:
+This module contains pypeline data structures including:
 spectrum:
     spectrum, spectrum2d, spectrum3d, spectrum4d
 amplitude:

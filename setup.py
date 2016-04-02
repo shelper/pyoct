@@ -23,23 +23,23 @@ test_requirements = [
 ]
 
 setup(
-    name='pyoct',
+    name='pypeline',
     version='0.1.0',
     description="python based packages for Optical Coherence Tomography applications",
     long_description=readme + '\n\n' + history,
     author="Zhijia Yuan",
     author_email='shelpermisc@gmail.com',
-    url='https://github.com/shelper/pyoct',
+    url='https://github.com/shelper/pypeline',
     packages=[
-        'pyoct',
+        'pypeline',
     ],
-    package_dir={'pyoct':
-                 'pyoct'},
+    package_dir={'pypeline':
+                 'pypeline'},
     include_package_data=True,
     install_requires=requirements,
     license="ISCL",
     zip_safe=False,
-    keywords='pyoct',
+    keywords='pypeline',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

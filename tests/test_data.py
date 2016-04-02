@@ -9,14 +9,14 @@ from builtins import *
 
 import pytest
 
-from .. import pyoct
+from .. import pypeline
 
 
 def test_basedata():
-    basedata = pyoct.data.basedata.BaseData([1024, 512], 'uint16')
+    basedata = pypeline.data.basedata.BaseData([1024, 512], 'uint16')
     basedata.from_file(raw_data_uint16)
     assert 65134 == basedata.data[1023, 511]
-    basedata = pyoct.data.basedata.BaseData([1024, 512], 'double')
+    basedata = pypeline.data.basedata.BaseData([1024, 512], 'double')
     basedata.from_file(raw_data_double)
     assert abs(basedata.data[1023, 511] + 0.0061) < 0.001
 

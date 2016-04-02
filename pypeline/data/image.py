@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-pyoct.image
+pypeline.image
 ~~~~~~~~~
 
 this module contains tools to manipulate general images, 8bit, 16bit, 24bit, etc.

@@ -63,7 +63,7 @@ def gen_disp(data, win=[], conf_file_path=[]):
     generate the disp coeff (3rd and 2nd order) by mirror signal
     data: input data
     win: the window to filter data
-    update_cfg: update pyoct.ini
+    update_cfg: update pypeline.ini
     '''
     data = data if (len(data.shape) == 1) else data.mean(0)
     # plt.plot(data)
@@ -86,7 +86,7 @@ def gen_disp2(data, win=[0, 1], conf_file_path=[]):
     generate the disp coeff (3rd and 2nd order) iteratively
     data: input data
     win: the window to filter data
-    update_cfg: update pyoct.ini
+    update_cfg: update pypeline.ini
     '''
 
     def img_entropy(disp_coeff, data, win):

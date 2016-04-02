@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-pyoct.spectrum
+pypeline.spectrum
 ~~~~~~~~~~~~~~
 
 this module defines the spectrum or interferogram in OCT

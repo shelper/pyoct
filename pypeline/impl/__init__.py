@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-pyoct.system
+pypeline.impl
 ~~~~~~~~
 
-This module contains pyoct system controllers:
+This module contains pypeline impl controllers:
 scanner:
     trigger, pulse, step_ang, step, range_ang, range
     the scanner controller defines the voltage to drive the scanner, this can be

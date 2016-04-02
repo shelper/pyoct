@@ -13,16 +13,16 @@
 
 import pytest
 
-from .. import pyoct
+from .. import pypeline
 
 
 # def test_data_generator():
-#     pyoct.tools.data_generator.gen_spectrum()
-#     pyoct.tools.data_generator.gen_basedata()
+#     pypeline.tools.data_generator.gen_spectrum()
+#     pypeline.tools.data_generator.gen_basedata()
 
 def test_rawdata_calibration():
-    rawdata = pyoct.data.basedata.BaseData([1024, 512], 'uint16')
-    rawdata.from_file('/Users/zyuan/develop/pyoct/foo/slope_uint16.raw')
+    rawdata = pypeline.data.basedata.BaseData([1024, 512], 'uint16')
+    rawdata.from_file('/Users/zyuan/develop/pypeline/foo/slope_uint16.raw')
 
 
 
@@ -43,7 +43,7 @@ def test_PipeLine():
              functools.partial(prod, y=2),
              functools.partial(power, y=3)]
 
-    pline = pyoct.proc.pipeline.Pipeline(funcs)
+    pline = pypeline.core.pipeline.Pipeline(funcs)
     pline.feedin_data(3)
     pline.process()
     assert pline.data_out == 512
