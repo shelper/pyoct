@@ -9,9 +9,9 @@ from builtins import *
 import pytest
 import os
 
-_test_data_dir = '/'.join((os.path.dirname(__file__), 'foo_data'))
-
-@pytest.fixture(autouse=True)
-def test_global_vars(request):
-    request.function.__globals__['raw_data_uint16'] = '/'.join((_test_data_dir, 'slope_uint16.raw'))
-    request.function.__globals__['raw_data_double'] = '/'.join((_test_data_dir, 'slope_double.raw'))
+# _test_data_dir = '/'.join((os.path.dirname(__file__), 'foo_data'))
+#
+# @pytest.fixture(autouse=True)
+# def test_global_vars(request):
+#     request.function.__globals__['raw_data_uint16'] = '/'.join((_test_data_dir, 'slope_uint16.raw'))
+#     request.function.__globals__['raw_data_double'] = '/'.join((_test_data_dir, 'slope_double.raw'))

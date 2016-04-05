@@ -6,6 +6,6 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 from builtins import *
 
-"""
-this package contains standard functions for general processing
-"""
+
+def power(x, y):
+    return x ** y

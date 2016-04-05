@@ -6,6 +6,7 @@ import collections
 from .funcwrap import connect, pipenize
 
 
+
 class Pipeline(object):
     """
     pipeline to connect settings for streamline data processing.
@@ -22,7 +23,7 @@ class Pipeline(object):
             func_list (list): a list of function to run through pipeline
         """
         if isinstance(func_list, list) and func_list:
-            self.func_list = [pipenize(f) for f in func_list]
+            self.func_list = pipenize(func_list)
             self.func_names = [func.__name__ for func in self.func_list]
             self.pipeline = connect(self.func_list)
         else:

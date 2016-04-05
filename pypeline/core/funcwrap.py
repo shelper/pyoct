@@ -18,6 +18,9 @@ run the same process for 1D, 2D, or 3D datasets
 
 import functools
 import numpy as np
+import asyncio
+import collections
+from ..config import ext_names, ext_files
 
 
 def connect(func_list):
@@ -38,10 +41,23 @@ def connect(func_list):
 
 
 def pipenize(func):
-    if callable(func):
+    if isinstance(func, collections.Iterable):
+        if all(map(callable, func)):
+            return [asyncio.coroutine(f) for f in func]
+    elif callable(func):
         return asyncio.coroutine(func)
-    elif isinstance(func, str):
-        return load_func(func)
+    # elif isinstance(func, str):
+    #     return load_func(func)
+
+
+def m_pipenize(func):
+    # TODO: matlab function pipenizer check: http://goo.gl/tMyU2C
+    pass
+
+
+def c_pipenize(func):
+    # TODO: c/c++ function pipenizer
+    pass
 
 
 def load_func(func_name):
@@ -56,6 +72,12 @@ def load_func(func_name):
     func = functools.partial(base_func, **func_cfg)
     return asyncio.coroutine(func)
 
+def load_extensions():
+    for ext in ext_names:
+        file = '.'.join((ext, 'py'))
+        if file not in ext_files:
+            ext_names.remove(ext)
+            print('extension {} not found, removed from extension list'.format(ext))
 
 def load_func_cfg(func_name):
     try:
