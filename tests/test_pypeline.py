@@ -22,37 +22,33 @@ import functools
 from importlib import import_module
 from inspect import getmembers, isfunction
 
-from ..pypeline.core import funcwrap, argswrap, pipeline
-from ..pypeline.config import ext_names
+from ..pypeline.core import funcwrap, pipeline
+from ..pypeline.config import ext_list
 
-# relative import does not work when running script in a python shell
-# __name__ is the full name of this file as a module of pypeline, which is 'pypeline.test.test_pypeline'
-ext_list = [import_module('.'.join(('...pypeline', 'ext', e)), __name__) for e in ext_names]
 
-func_list = [getattr(ext, ext_name) for ext, ext_name in zip(ext_list, ext_names)]
-# print(func_list)
-func_list = [functools.partial(f, y=3) for f in func_list]
+# def test_funcwrap():
+#     funcwrap.load_ext_funcs()
+
+print(ext_list)
 
 def test_pipeline():
-    pline = pipeline.Pipeline(func_list)
-    # test single input
+    pline = pipeline.Pipeline(ext_list)
+
     data_out = pline.process(3)
-    assert next(data_out) == 512
+    # assert next(data_out) == 50
+    assert data_out == 50
 
     # test iterable input
     data_out = pline.process([1, 2, 3, 4])
-    assert next(data_out) == 64
-    assert next(data_out) == 216
-    assert next(data_out) == 512
-    assert next(data_out) == 1000
+    assert next(data_out) == 18
+    assert next(data_out) == 32
+    assert next(data_out) == 50
+    assert next(data_out) == 72
 
 
-def test_funcwrap():
-    pass
 
-
-def test_argswrap():
-    pass
+# def test_argswrap():
+#     pass
 
 
 def test_pypeline():

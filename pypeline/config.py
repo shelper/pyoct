@@ -15,17 +15,32 @@ processing functions in the the folder impl/oct/*
 
 """
 from glob import glob
-import os.path as path
+# import os.path as path
+import os
+import sys
 
-pypeline_path = path.dirname(path.abspath(__file__))
-ext_files = [path.basename(f) for f in glob('/'.join((pypeline_path, 'ext', '*.py')))]
-if '__init__.py' in ext_files:
-    ext_files.remove('__init__.py')
+from .core import funcwrap
+
+
+# Get the project root dir, which is the parent dir of this
+project_root = os.path.dirname(os.path.abspath(__file__))
+# print(project_root)
+sys.path.insert(0, project_root)
 
 ext_names = ['add', 'power', 'prod', 'subtract']
+ext_list = []
 
+# load ext function to the ext_list
 for ext in ext_names:
+    ext_files = [os.path.basename(f) for f in glob('/'.join((project_root, 'ext', '*.py')))]
+    if '__init__.py' in ext_files:
+        ext_files.remove('__init__.py')
     file = '.'.join((ext, 'py'))
     if file not in ext_files:
         ext_names.remove(ext)
-        print('extension {} not found, removed from extension list'.format(ext))
+        print('WARNING: extension {} not found, removed from extension list'.format(ext))
+    else:
+        ext_list.append(funcwrap.load_ext_func(ext, cfg_file=None))
+
+# load a specific implementation from a folder containing a set of configurations and functions
+# funcwrap.load_impl('oct')   # limited to one implementation

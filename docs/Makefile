@@ -50,6 +50,7 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 html:
+	sphinx-apidoc -f -o ./ ../pypeline
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."

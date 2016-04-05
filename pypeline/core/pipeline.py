@@ -39,10 +39,10 @@ class Pipeline(object):
         """
         if isinstance(func, list):
             for f in func:
-                self.func_list.insert(position, asyncio.coroutine(f))
+                self.func_list.insert(position, pipenize(f))
                 self.func_names.insert(position, f.__name__)
         elif callable(func):
-            self.func_list.insert(position, asyncio.coroutine(func))
+            self.func_list.insert(position, pipenize(func))
             self.func_names.insert(position, func.__name__)
         self.pipeline = connect(self.func_list)
 
@@ -95,12 +95,16 @@ class Pipeline(object):
         Args:
             data_in: input data of the pipeline, this can be data or iterable data source
         """
+        print(data_in)
         if isinstance(data_in, collections.Iterable):
             for d in data_in:
                 yield self.run_event.run_until_complete(self.pipeline(d))
 
         else:
-            yield self.run_event.run_until_complete(self.pipeline(data_in))
+            # yield self.run_event.run_until_complete(self.pipeline(data_in))
+            data_out =  self.run_event.run_until_complete(self.pipeline(data_in))
+            print(data_out)
+            return data_out
 
     def close(self):
         """

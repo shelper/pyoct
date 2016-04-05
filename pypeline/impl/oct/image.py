@@ -2,7 +2,7 @@
 
 """
 pypeline.image
-~~~~~~~~~
+~~~~~~~~~~~~~~
 
 this module contains misc to manipulate general images, 8bit, 16bit, 24bit, etc.
 

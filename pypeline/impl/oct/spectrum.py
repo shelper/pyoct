@@ -2,7 +2,7 @@
 
 """
 pypeline.spectrum
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 this module defines the spectrum or interferogram in OCT
 it should be the subclass of BaseData

@@ -61,6 +61,7 @@ if errorlevel 9009 (
 )
 
 if "%1" == "html" (
+	sphinx-apidoc -f -o ./ ../pypeline
 	%SPHINXBUILD% -b html %ALLSPHINXOPTS% %BUILDDIR%/html
 	if errorlevel 1 exit /b 1
 	echo.

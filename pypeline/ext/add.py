@@ -10,4 +10,6 @@ from builtins import *
 def add(x, y):
     """
     """
+    def foo():
+        pass
     return x + y
