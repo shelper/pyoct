@@ -22,21 +22,18 @@ import functools
 from importlib import import_module
 from inspect import getmembers, isfunction
 
-from ..pypeline.core import funcwrap, pipeline
-from ..pypeline.config import ext_list
+from pypeline.core import funcwrap, pipeline
+from pypeline.config import ext_list
 
 
 # def test_funcwrap():
 #     funcwrap.load_ext_funcs()
 
-print(ext_list)
-
 def test_pipeline():
     pline = pipeline.Pipeline(ext_list)
 
     data_out = pline.process(3)
-    # assert next(data_out) == 50
-    assert data_out == 50
+    assert next(data_out) == 50
 
     # test iterable input
     data_out = pline.process([1, 2, 3, 4])
@@ -46,10 +43,3 @@ def test_pipeline():
     assert next(data_out) == 72
 
 
-
-# def test_argswrap():
-#     pass
-
-
-def test_pypeline():
-    pass

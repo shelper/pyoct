@@ -101,10 +101,7 @@ class Pipeline(object):
                 yield self.run_event.run_until_complete(self.pipeline(d))
 
         else:
-            # yield self.run_event.run_until_complete(self.pipeline(data_in))
-            data_out =  self.run_event.run_until_complete(self.pipeline(data_in))
-            print(data_out)
-            return data_out
+            yield self.run_event.run_until_complete(self.pipeline(data_in))
 
     def close(self):
         """
