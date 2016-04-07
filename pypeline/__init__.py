@@ -20,8 +20,6 @@ example1: build a processing settings to read in raw interferogram data and reco
 __version__ = '1.0.0'
 __all__ = ['data', 'core', 'impl']
 
-from .data import *
-
 from .core import *
 
 from .impl import *

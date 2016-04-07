@@ -7,5 +7,5 @@ from __future__ import (absolute_import, division,
 from builtins import *
 
 """
-this package contains user defined function as extension in single pythong file
+this package contains user defined function as extension in single python file
 """

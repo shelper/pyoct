@@ -33,10 +33,14 @@ def load_ext_func(ext_name, cfg_file=None):
         cfg_file:
         async (bool):
     """
-    # __name__ is the full name of this file as a module, which is 'pypeline.core.funcwrap'
-    # relative import works for module, not script
+    # TODO: load multiple functions from a module, which can be done by:
+    # from inspect import getmembers, isfunction
+    # module_func_list = [f for f in getmembers(module) if isfunction(f[1])]
+    # remember import module executes the top level expressions
+    # if that is not desirable, use ast module to parse the source code to get module_func_list
+
+
     ext_module = '.'.join(('...ext', ext_name))
-    # print(ext_module, __name__)
     ext_module = import_module(ext_module, __name__)
     func = getattr(ext_module, ext_name)
     if cfg_file:
@@ -49,12 +53,6 @@ def load_ext_func(ext_name, cfg_file=None):
     # else:
     #     return func
     return func
-
-    # TODO: load multiple functions from a module, which can be done by:
-    # from inspect import getmembers, isfunction
-    # module_func_list = [f for f in getmembers(module) if isfunction(f[1])]
-    # remember import module executes the top level expressions
-    # if that is not desirable, use ast module to parse the source code to get module_func_list
 
 
 def load_ext_cfg(func):
