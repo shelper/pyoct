@@ -4,10 +4,10 @@ pypeline.core package
 Submodules
 ----------
 
-pypeline.core.argswrap module
------------------------------
+pypeline.core.decors module
+---------------------------
 
-.. automodule:: pypeline.core.argswrap
+.. automodule:: pypeline.core.decors
     :members:
     :undoc-members:
     :show-inheritance:

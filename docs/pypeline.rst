@@ -7,7 +7,6 @@ Subpackages
 .. toctree::
 
     pypeline.core
-    pypeline.data
     pypeline.ext
     pypeline.impl
 

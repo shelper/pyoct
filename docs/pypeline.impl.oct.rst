@@ -28,6 +28,14 @@ pypeline.impl.oct.image module
     :undoc-members:
     :show-inheritance:
 
+pypeline.impl.oct.mock module
+-----------------------------
+
+.. automodule:: pypeline.impl.oct.mock
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pypeline.impl.oct.proc module
 -----------------------------
 

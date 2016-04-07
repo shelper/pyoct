@@ -12,14 +12,6 @@ pypeline.impl.misc.img_proc module
     :undoc-members:
     :show-inheritance:
 
-pypeline.impl.misc.mock module
-------------------------------
-
-.. automodule:: pypeline.impl.misc.mock
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 pypeline.impl.misc.sig_proc module
 ----------------------------------
 
