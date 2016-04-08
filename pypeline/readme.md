@@ -60,13 +60,15 @@ alternatively, users can load specific function instead of
 a set of them by doing:
 `pypeline.load_func('path-to-the-func-file')`.
 Thereafter, the user can put the function into the pipeline
-as they wish
+as they wish.
+
+
 
 ## load for certain implementations
 this is very useful for quick prototyping to enable real time
 data acquisition and processing/displaying
-TODO:
 
+TODO:
 
 TODO:
 write the use case for this package, remember to learn from tydlig
