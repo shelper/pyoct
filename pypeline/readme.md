@@ -58,7 +58,7 @@ name, then you need to:
     ```
 alternatively, users can load specific function instead of
 a set of them by doing:
-`pypeline.load_func('path-to-the-func-file')`.
+`pypeline.core.funcwrap.load_func('path-to-the-func-file')`.
 Thereafter, the user can put the function into the pipeline
 as they wish.
 

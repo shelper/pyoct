@@ -103,6 +103,8 @@ class Pipeline(object):
         else:
             yield self.run_event.run_until_complete(self.pipeline(data_in))
 
+        self.close()
+
     def close(self):
         """
         close pipeline, stop yielding results, close the async threads
