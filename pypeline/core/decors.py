@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+
+# below imports enables python 2 and 3 compatible codes
+# requires python-future, install by `pip install future`
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+from builtins import *
+
 def log_scale(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
